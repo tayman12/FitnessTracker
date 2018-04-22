@@ -38,11 +38,8 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
-            <a class="brand" href="addGoal.html">
-                Get started
-            </a>
-            <ul class="nav">
-            </ul>
+            <a class="brand" href="addGoal.html"> Get started</a>
+            <ul class="nav"></ul>
         </div>
     </div>
 </div>
@@ -55,8 +52,7 @@
         <a class="btn btn-primary" href="addGoal.html"> Add Goal � </a>
         <a class="btn btn-primary" href="addMinutes.html"> Add Exercise Minutes � </a>
     </div>
-    <div>
-    </div>
+    <div></div>
 </div>
 
 <script src="jquery-1.8.3.js"></script>
