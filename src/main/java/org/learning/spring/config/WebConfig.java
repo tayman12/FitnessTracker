@@ -34,18 +34,11 @@ public class WebConfig implements WebMvcConfigurer {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/FitnessTracker?autoReconnect=true");
+        dataSource.setUrl("jdbc:postgresql://localhost:5432/FitnessTracker");
         dataSource.setUsername("postgres");
         dataSource.setPassword("sa");
 
         return dataSource;
-    }
-
-    @Bean
-    public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
-        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setShowSql(true);
-        return hibernateJpaVendorAdapter;
     }
 
     @Bean
@@ -56,14 +49,22 @@ public class WebConfig implements WebMvcConfigurer {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter());
         entityManagerFactoryBean.setJpaPropertyMap(getJPAPropertyMap());
+        entityManagerFactoryBean.setPackagesToScan(new String[]{"org.learning.spring"});
 
         return entityManagerFactoryBean;
     }
 
     @Bean
-    public JpaTransactionManager jpaTransactionManager(){
+    public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(true);
+        return hibernateJpaVendorAdapter;
+    }
+
+    @Bean
+    public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-        jpaTransactionManager.setEntityManagerFactory((EntityManagerFactory) entityManagerFactoryBean());
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return jpaTransactionManager;
     }
 
@@ -105,7 +106,7 @@ public class WebConfig implements WebMvcConfigurer {
     private Map<String, String> getJPAPropertyMap() {
         Map<String, String> jpaPropertyMap = new HashMap<>();
         jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-        jpaPropertyMap.put("hibernate.hbm2ddl.auto", "none");
+        jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create-drop");
         jpaPropertyMap.put("hibernate.format_sql", "true");
         return jpaPropertyMap;
     }
