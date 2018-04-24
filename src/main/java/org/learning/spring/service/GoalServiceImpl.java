@@ -1,6 +1,7 @@
 package org.learning.spring.service;
 
 import org.learning.spring.model.Goal;
+import org.learning.spring.model.GoalReport;
 import org.learning.spring.repository.GoalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,10 @@ public class GoalServiceImpl implements GoalService {
     @Override
     public List<Goal> findAll() {
         return goalRepository.findAll();
+    }
+
+    @Override
+    public List<GoalReport> findAllGoalReports() {
+        return goalRepository.findAllGoalReports();
     }
 }

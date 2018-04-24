@@ -1,6 +1,7 @@
 package org.learning.spring.repository;
 
 import org.learning.spring.model.Goal;
+import org.learning.spring.model.GoalReport;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -29,5 +30,14 @@ public class GoalRepositoryImpl implements GoalRepository {
         List<Goal> goals = query.getResultList();
 
         return goals;
+    }
+
+    @Override
+    public List<GoalReport> findAllGoalReports() {
+        Query query = entityManager.createQuery("select new org.learning.spring.model.GoalReport(g.minutes, e.minutes, e.activity) from Goal g, Exercise e where g.id = e.goal.id");
+
+        List<GoalReport> goalReports = query.getResultList();
+
+        return goalReports;
     }
 }

@@ -1,6 +1,7 @@
 package org.learning.spring.controller;
 
 import org.learning.spring.model.Goal;
+import org.learning.spring.model.GoalReport;
 import org.learning.spring.service.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,4 +50,12 @@ public class GoalController {
         model.addAttribute("goals", goals);
         return "getGoals";
     }
+
+    @RequestMapping(value = "/getGoalReports", method = RequestMethod.GET)
+    public String getGoalReports(Model model) {
+        List<GoalReport> goalReports = goalService.findAllGoalReports();
+        model.addAttribute("goalReports", goalReports);
+        return "getGoalReports";
+    }
+
 }
