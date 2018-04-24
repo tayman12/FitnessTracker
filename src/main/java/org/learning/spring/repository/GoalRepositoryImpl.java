@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -25,7 +25,9 @@ public class GoalRepositoryImpl implements GoalRepository {
 
     @Override
     public List<Goal> findAll() {
-        Query query = entityManager.createQuery("select g from Goal g");
+//        Query query = entityManager.createQuery("select g from Goal g");
+
+        TypedQuery<Goal> query = entityManager.createNamedQuery(Goal.FIND_ALL_GOALS, Goal.class);
 
         List<Goal> goals = query.getResultList();
 
@@ -34,7 +36,9 @@ public class GoalRepositoryImpl implements GoalRepository {
 
     @Override
     public List<GoalReport> findAllGoalReports() {
-        Query query = entityManager.createQuery("select new org.learning.spring.model.GoalReport(g.minutes, e.minutes, e.activity) from Goal g, Exercise e where g.id = e.goal.id");
+//        Query query = entityManager.createQuery("select new org.learning.spring.model.GoalReport(g.minutes, e.minutes, e.activity) from Goal g, Exercise e where g.id = e.goal.id");
+
+        TypedQuery<GoalReport> query = entityManager.createNamedQuery(Goal.FIND_GOAL_REPORTS, GoalReport.class);
 
         List<GoalReport> goalReports = query.getResultList();
 
