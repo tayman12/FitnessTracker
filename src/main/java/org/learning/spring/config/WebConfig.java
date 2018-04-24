@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 @EnableWebMvc
 @Configuration
+@EnableJpaRepositories
 @EnableTransactionManagement
 @ComponentScan("org.learning.spring")
 public class WebConfig implements WebMvcConfigurer {
