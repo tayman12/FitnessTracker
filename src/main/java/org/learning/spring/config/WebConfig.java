@@ -26,9 +26,9 @@ import java.util.Map;
 
 @EnableWebMvc
 @Configuration
-@EnableJpaRepositories
 @EnableTransactionManagement
 @ComponentScan("org.learning.spring")
+@EnableJpaRepositories("org.learning.spring.repository")
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
@@ -44,7 +44,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactoryBean.setPersistenceUnitName("punit");
@@ -64,7 +64,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public JpaTransactionManager jpaTransactionManager(EntityManagerFactory entityManagerFactory) {
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(entityManagerFactory);
         return jpaTransactionManager;
