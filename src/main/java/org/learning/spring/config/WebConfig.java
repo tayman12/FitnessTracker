@@ -108,7 +108,7 @@ public class WebConfig implements WebMvcConfigurer {
     private Map<String, String> getJPAPropertyMap() {
         Map<String, String> jpaPropertyMap = new HashMap<>();
         jpaPropertyMap.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-        jpaPropertyMap.put("hibernate.hbm2ddl.auto", "create-drop");
+        jpaPropertyMap.put("hibernate.hbm2ddl.auto", "update");
         jpaPropertyMap.put("hibernate.format_sql", "true");
         return jpaPropertyMap;
     }

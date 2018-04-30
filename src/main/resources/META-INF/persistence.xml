@@ -7,6 +7,8 @@
     <persistence-unit name="punit">
         <class>org.learning.spring.model.Goal</class>
         <class>org.learning.spring.model.Exercise</class>
+        <class>org.learning.spring.model.User</class>
+        <class>org.learning.spring.model.Authorities</class>
     </persistence-unit>
 
 </persistence>

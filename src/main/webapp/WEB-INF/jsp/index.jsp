@@ -5,6 +5,7 @@
   Time: 8:18 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -46,10 +47,13 @@
 <div class="container">
     <div class="hero-unit">
         <div>
-            <h1>Welcome to Fitness Tracker!</h1>
+            <h1>Welcome <sec:authentication property="name"/> to Fitness Tracker!</h1>
             <p>To get started, we need to enter a goal for what we want to exercise for today.</p>
         </div>
         <a class="btn btn-primary" href="addGoal.html"> Add Goal � </a>
+        <sec:authorize access="hasRole('ADMIN')">
+            <a class="btn btn-primary" href="addGoal.html"> Edit Goal � </a>
+        </sec:authorize>
         <a class="btn btn-primary" href="addMinutes.html"> Add Exercise Minutes � </a>
     </div>
     <div></div>
