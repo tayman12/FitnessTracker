@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").hasRole("USER").anyRequest().authenticated()
                 .and().formLogin().loginPage("/login.html").failureUrl("/loginFailed.html").permitAll()
                 .and().logout().logoutSuccessUrl("/logout.html").permitAll()
+                .and().exceptionHandling().accessDeniedPage("/403.html")
                 .and().csrf().disable()
         ;
     }

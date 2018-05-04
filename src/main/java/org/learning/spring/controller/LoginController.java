@@ -34,4 +34,9 @@ public class LoginController {
         System.out.println("Logout");
         return "logout";
     }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String error403() {
+        return "403";
+    }
 }
