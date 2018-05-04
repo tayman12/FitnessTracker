@@ -55,6 +55,7 @@
             <a class="btn btn-primary" href="addGoal.html"> Edit Goal � </a>
         </sec:authorize>
         <a class="btn btn-primary" href="addMinutes.html"> Add Exercise Minutes � </a>
+        <a class="btn btn-warning" href="logout.html">Logout</a>
     </div>
     <div></div>
 </div>
